@@ -25,7 +25,15 @@
 	</body>
 	<script>
 		userClass = "pull-left alert-success";
+		$('#message').on('keypress', function(e) {
+            if(e.keyCode==13){
+                chat();
+             }
+        });
 		$(document).on("click","button",function(){
+			chat();
+		});
+		function chat(){
 			var message = $("#message").val().trim();
 			var pseudo = $("input[name='user']:checked").val().trim();
 			if (pseudo === "User 2"){
@@ -37,6 +45,6 @@
 			if(message !== "" && pseudo !== ""){
 				$("#messageStory").append('<div class="row"><div class="alert col-md-5 ' + userClass + '"><strong>' + pseudo + '</strong><br>' + message + '</div></div>')
 			}
-		});
+		}
 	</script>
 </html>
