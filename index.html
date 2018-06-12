@@ -1,15 +1,50 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Chat</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-	test
-</body>
+	<head>
+		<title>Chat</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<center>
+				<label class="checkbox-inline"><input type="radio" value="User 1" name="user" checked="true">User 1</label>
+				<label class="checkbox-inline"><input type="radio" value="User 2" name="user">User 2</label>
+				<hr>
+				<input type="text" placeholder="Type Your Message Here" class="form-control" name="message" id="message">
+				<div class="row">
+					<button type="submit" class="btn btn-success text-center">Send</button>
+				</div>
+			</center>
+			<div id="messageStory"></div>
+		</div>
+	</body>
+	<script>
+		userClass = "pull-left alert-success";
+		$('#message').on('keypress', function(e) {
+            if(e.keyCode==13){
+                chat();
+             }
+        });
+		$(document).on("click","button",function(){
+			chat();
+		});
+		function chat(){
+			var message = $("#message").val().trim();
+			var pseudo = $("input[name='user']:checked").val().trim();
+			if (pseudo === "User 2"){
+				userClass = "pull-right alert-info";
+			}
+			else{
+				userClass = "pull-left alert-success";
+			}
+			if(message !== "" && pseudo !== ""){
+				$("#messageStory").append('<div class="row"><div class="alert col-md-5 ' + userClass + '"><strong>' + pseudo + '</strong><br>' + message + '</div></div>')
+			}
+		}
+	</script>
 </html>
