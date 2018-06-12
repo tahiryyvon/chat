@@ -14,23 +14,28 @@
 			<center>
 				<label class="checkbox-inline"><input type="radio" value="User 1" name="user" checked="true">User 1</label>
 				<label class="checkbox-inline"><input type="radio" value="User 2" name="user">User 2</label>
+				<br>
 				<input type="text" plcaholder="Type Your Message Here" class="form-control col-sm-5" name="message" id="message">
-				<button type="submit" class="btn btn-success text-center">Send</button>
+				<div class="row">
+					<button type="submit" class="btn btn-success text-center">Send</button>
+				</div>
 			</center>
 			<div id="messageStory"></div>
 		</div>
 	</body>
 	<script>
-		var conversationObj = "";
-		var userClass = "pull-left alert-success";
+		userClass = "pull-left alert-success";
 		$(document).on("click","button",function(){
 			var message = $("#message").val().trim();
 			var pseudo = $("input[name='user']:checked").val().trim();
 			if (pseudo === "User 2"){
-				userClass = "pull-right alert-primary";
+				userClass = "pull-right alert-info";
+			}
+			else{
+				userClass = "pull-left alert-success";
 			}
 			if(message !== "" && pseudo !== ""){
-				$("#messageStory").append('<div class="row"><div class="alert col-md-5 ' + userClass + '"><strong>' + pseudo + '</strong>' + message + '</div></div>')
+				$("#messageStory").append('<div class="row"><div class="alert col-md-5 ' + userClass + '"><strong>' + pseudo + '</strong><br>' + message + '</div></div>')
 			}
 		});
 	</script>
